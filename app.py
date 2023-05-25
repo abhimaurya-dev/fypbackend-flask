@@ -21,7 +21,7 @@ def recommendCrop():
         query_array = np.array(query_array).reshape(1,-1)
         response_data={}
         # with open("mlmodel\\trainedModel\\trained_model",'rb') as f:
-        model = pickle.load(open("mlmodel\\trainedModel\\trained_model",'rb'));
+        model = pickle.load(open("recommend_trained_model",'rb'));
         setMessage="NO MODEL"
         predict_result = model.predict(query_array)
         response_data['success'] = 'true'
