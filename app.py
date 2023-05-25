@@ -14,15 +14,12 @@ def hello_world():
 
 @app.route("/predict/", methods=['POST'])
 def recommendCrop():
-    setMessage = "true"
     try:
         query_array = request.json['query_array']
         query_array = list(map(float,query_array))
         query_array = np.array(query_array).reshape(1,-1)
         response_data={}
-        # with open("mlmodel\\trainedModel\\trained_model",'rb') as f:
         model = pickle.load(open("recommend_trained_model",'rb'));
-        setMessage="NO MODEL"
         predict_result = model.predict(query_array)
         response_data['success'] = 'true'
         response_data['predicted_crop'] = predict_result[0]
@@ -31,5 +28,4 @@ def recommendCrop():
         return {
                   'success': 'false',
                   'message':'Invalid request',
-                  'dev': setMessage
               }
