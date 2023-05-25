@@ -13,3 +13,4 @@ scipy
 six
 threadpoolctl
 Werkzeug
+gunicorn
