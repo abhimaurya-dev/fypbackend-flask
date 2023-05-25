@@ -17,11 +17,11 @@ def recommendCrop():
     setMessage = "true"
     try:
         query_array = request.json['query_array']
+        setMessage="NO MODEL"
         query_array = list(map(float,query_array))
         query_array = np.array(query_array).reshape(1,-1)
         response_data={}
         with open("mlmodel\\trainedModel\\trained_model",'rb') as f:
-          setMessage="NO MODEL"
           model = pickle.load(f)
           predict_result = model.predict(query_array)
           response_data['success'] = 'true'
